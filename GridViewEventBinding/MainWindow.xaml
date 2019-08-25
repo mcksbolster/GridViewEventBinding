@@ -3,11 +3,60 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:data="clr-namespace:GridViewEventBinding.ViewModels"
     xmlns:local="clr-namespace:GridViewEventBinding"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     Title="MainWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid />
+    <Window.DataContext>
+        <data:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <telerik:RadGridView
+            Width="772"
+            Height="226"
+            Margin="10,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding People}"
+            ShowGroupPanel="False">
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding
+                    Command="{Binding Add}"
+                    EventName="SelectionChanged"
+                    RaiseOnHandledEvents="True" />
+            </telerik:EventToCommandBehavior.EventBindings>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn
+                    MinWidth="75"
+                    DataMemberBinding="{Binding Name}"
+                    Header="Name" />
+                <telerik:GridViewDataColumn
+                    MinWidth="100"
+                    DataMemberBinding="{Binding UserName}"
+                    Header="Username" />
+                <telerik:GridViewDataColumn
+                    MinWidth="150"
+                    DataMemberBinding="{Binding Email}"
+                    Header="Email" />
+                <telerik:GridViewDataColumn
+                    DataFormatString="{} {0:MM/dd/yyyy}"
+                    DataMemberBinding="{Binding Birthday}"
+                    Header="Birthday" />
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+        <telerik:RadButton
+            Width="112"
+            Height="Auto"
+            Margin="670,241,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding AddCommand}"
+            Content="Button"
+            RenderTransformOrigin="3.77,-1.587" />
+    </Grid>
 </Window>
