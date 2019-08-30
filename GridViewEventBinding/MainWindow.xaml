@@ -7,14 +7,16 @@
     xmlns:local="clr-namespace:GridViewEventBinding"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:p="clr-namespace:GridViewEventBinding.Controls"
     Title="MainWindow"
     Width="800"
-    Height="450"
+    Height="650"
     mc:Ignorable="d">
     <Window.DataContext>
         <data:MainWindowViewModel />
     </Window.DataContext>
     <Grid>
+        <p:People Margin="0,251,0,10"/>
         <telerik:RadGridView
             Width="772"
             Height="226"
